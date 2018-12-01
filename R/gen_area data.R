@@ -69,8 +69,8 @@ from_crs='+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=
 setwd('D:/package/kma')
 devtools::use_data(area, internal = F,overwrite=T)
 remDr$close()
-library(devtools)
-install_github('qkdrk777777/kma')
-data()
-library(kma)
-area
+# library(devtools)
+# install_github('qkdrk777777/kma')
+# data()
+# library(kma)
+# area
