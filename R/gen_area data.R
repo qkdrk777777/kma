@@ -71,6 +71,6 @@ devtools::use_data(area, internal = F,overwrite=T)
 remDr$close()
 library(devtools)
 install_github('qkdrk777777/kma')
-data(area)
+data()
 library(kma)
 area
