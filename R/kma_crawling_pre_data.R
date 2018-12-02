@@ -38,9 +38,9 @@ eCaps <- list(
 rD <- rsDriver(extraCapabilities = eCaps)
 remDr <- rD$client
 #############
-cprof=getChromeProfile('C:/Users/qkdrk/Desktop/예보',"Profile 1")
-remDr <- remoteDriver(port=port3, browserName = 'chrome',extraCapabilities =cprof)
-remDr$open()#드라이버 실행
+
+remDr <- remoteDriver(port=port3, browserName = 'chrome')
+remDr$open()#run the driver
 year=year[1]
 
 
@@ -69,24 +69,21 @@ login=remDr$findElement(using='xpath',value='//*[@id="loginbtn"]')
 login$sendKeysToElement(list(key='enter'))
 })
 Sys.sleep(2)
-#자료 기간 설정
-#년도
+#set preiod of data
+
 start=remDr$findElement(using='xpath',value='//*[@id="startDt"]')
 end=remDr$findElement(using='xpath',value='//*[@id="endDt"]')
 start$sendKeysToElement(list(paste0(year)))
 end$sendKeysToElement(list(paste0(year)))
 city_n=0
-#지역 설정
+#set area
 for(city in citydata[[city_index]]){
 area=remDr$findElement(using='css selector',value='input#btnStn.selectBtn1.btn.btn-primary.VAR3_BTN')
 area$sendKeysToElement(list(key='enter'))
 
 Sys.sleep(2)
-# area_1=remDr$findElement(using='css selector',value='span#ztree_1_check')
-#충청남도 클릭
 area_1=remDr$findElement(using='css selector',value=paste0('span#ztree_',citydata2[[city_index]],'_switch'))
 area_1$clickElement()
-#중분류 지역 클릭
 city_n=city_n+1
 
 Sys.sleep(2)
@@ -97,17 +94,17 @@ Sys.sleep(2)
 close0=remDr$findElements(using='class name',value='btn-close')
 close0[[3]]$clickElement()
 
-#월
+#set month
 st.mon=remDr$findElement(using='xpath',value='//*[@id="startMt"]')
 ed.mon=remDr$findElement(using='xpath',value='//*[@id="endMt"]')
 
 st.mon$sendKeysToElement(list(paste0(start_month)))
 ed.mon$sendKeysToElement(list(paste0(end_month)))
 
-#조회
-serch=remDr$findElement(using='class name',value='addBtn')
-remDr$mouseMoveToLocation(webElement = serch)
-serch$clickElement()
+#search
+search=remDr$findElement(using='class name',value='addBtn')
+remDr$mouseMoveToLocation(webElement = search)
+search$clickElement()
 button=NULL
 try(silent = T,{suppressMessages(
   button<-remDr$findElement(using='css selector',value='button.buttonOK'))
